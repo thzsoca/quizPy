@@ -9,3 +9,5 @@ if answer == "input":
     print("Correct!")
 else:
     print(f"The answer is 'input', not {answer!r}")
+
+print("It is wednesday my duuuudes!!")
