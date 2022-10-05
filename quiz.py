@@ -1,26 +1,33 @@
+# quiz.py
+
+import random
 from string import ascii_lowercase
 
+NUM_QUESTIONS_PER_QUIZ = 5
 QUESTIONS = {
-    "Which keyword do you use to loop over a given list of elements": [
-        "for", "while", "each", "loop"
+    "What's the official name of the := operator": [
+        "Assignment expression",
+        "Named expression",
+        "Walrus operator",
+        "Colon equals operator",
     ],
-    "What's the purpose of the built-in zip() function": [
-        "To iterate over two or more sequences at the same time",
-        "To combine several strings into one",
-        "To compress several files into one archive",
-        "To get information from the user",
-    ],
-    "What's the name of Python's sorting algorithm": [
-        "Timsort", "Quicksort", "Merge sort", "Bubble sort"
-    ],
+    "What's one effect of calling random.seed(42)": [
+        "The random numbers are reproducible.",
+        "The random numbers are more random.",
+        "The computer clock is reset.",
+        "The first random number is always 42.",
+    ]
 }
 
+num_questions = min(NUM_QUESTIONS_PER_QUIZ, len(QUESTIONS))
+questions = random.sample(list(QUESTIONS.items()), k=num_questions)
+
 num_correct = 0
-for num, (question, alternatives) in enumerate(QUESTIONS.items(), start=1):
+for num, (question, alternatives) in enumerate(questions, start=1):
     print(f"\nQuestion {num}:")
     print(f"{question}?")
     correct_answer = alternatives[0]
-    labeled_alternatives = dict(zip(ascii_lowercase, sorted(alternatives)))
+    labeled_alternatives = dict(zip(ascii_lowercase, random.sample(alternatives, k=len(alternatives))))
     for label, alternative in labeled_alternatives.items():
         print(f"    ({label}) {alternative}")
 
